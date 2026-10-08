@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111713">
+  <meta name="description" content="Gym members and subscription management dashboard made with HTML, CSS and vanilla JavaScript.">
+  <title>FORGE — Gym Members Dashboard</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html" aria-label="Forge Gym dashboard home">
+          <span class="brand-icon" aria-hidden="true"><i class="fa-solid fa-dumbbell"></i></span>
+          <span class="brand-name">FORGE<span class="brand-dot">.</span><small>GYM MANAGEMENT</small></span>
+        </a>
+        <div class="topbar-right"><span class="topbar-pill"><span class="status-dot"></span> Member dashboard</span><span class="topbar-profile" aria-hidden="true"><i class="fa-solid fa-user"></i></span></div>
+      </div>
+    </header>
+
+    <main class="container dashboard massgeforusr">
+      <section class="hero" aria-labelledby="welcome-title">
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-line"></span> BUILT FOR THE EVERYDAY GRIND</p>
+          <h1 id="welcome-title">THE STRONGEST GYMS<br><span>STAY ORGANIZED.</span></h1>
+          <p class="hero-copy">All your members, subscriptions and details in one straightforward dashboard. Less admin. More progress.</p>
+          <a class="hero-cta" href="#member-form">Add a new member <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <span class="hero-orbit hero-orbit-outer"></span><span class="hero-orbit hero-orbit-inner"></span>
+          <div class="barbell"><span class="weight weight-outside"></span><span class="weight weight-inside"></span><span class="bar"></span><span class="weight weight-inside"></span><span class="weight weight-outside"></span></div>
+          <span class="hero-stamp">PUSH / TRACK / REPEAT <i class="fa-solid fa-bolt"></i></span>
+        </div>
+      </section>
+
+      <div class="section-heading"><div><p class="section-kicker">YOUR WORKSPACE</p><h2>Manage your community<span class="accent-point">.</span></h2><p class="heading-subtitle">Add and update member records, then find them in seconds.</p></div><span class="heading-mark" aria-hidden="true">01 / 02</span></div>
+
+      <div class="workspace">
+        <!-- Form: existing JavaScript IDs and event handlers are preserved -->
+        <section class="form-card" id="member-form" aria-labelledby="member-form-heading">
+          <div class="panel-heading"><span class="panel-icon"><i class="fa-solid fa-user-plus" aria-hidden="true"></i></span><div><p class="panel-overline">MEMBER DETAILS</p><h2 id="member-form-heading">Add a member</h2><p>Every great gym starts with its people.</p></div></div>
+          <div class="row g-3">
+            <div class="col-12"><label for="productName" class="form-label">Member name <span class="required-star">*</span></label><div class="input-shell"><i class="fa-regular fa-user" aria-hidden="true"></i><input id="productName" type="text" class="form-control" placeholder="e.g. Alex Morgan" autocomplete="name"></div></div>
+            <div class="col-12"><label for="productPrice" class="form-label">Subscription price <span class="required-star">*</span></label><div class="input-shell"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i><input id="productPrice" type="number" class="form-control" min="0" step="0.01" placeholder="e.g. 59.99"></div></div>
+            <div class="col-12"><label for="productCategory" class="form-label">Subscription type <span class="required-star">*</span></label><div class="input-shell"><i class="fa-regular fa-calendar" aria-hidden="true"></i><select id="productCategory" class="form-select"><option value="">Select subscription type</option><option>Monthly</option><option>3 Months</option><option>6 Months</option><option>Yearly</option></select></div></div>
+            <div class="col-12"><label for="productImage" class="form-label">Member image <span class="optional">OPTIONAL</span></label><div class="file-shell"><i class="fa-regular fa-image" aria-hidden="true"></i><input id="productImage" type="file" class="form-control" accept="image/*"></div><p class="field-hint">The original JavaScript currently uses the default profile image for saved members.</p></div>
+            <div class="col-12"><label for="productDescription" class="form-label">Member notes <span class="required-star">*</span></label><textarea id="productDescription" class="form-control notes-field" placeholder="Training goals, preferences, and membership notes..." rows="4"></textarea></div>
+            <div class="col-12"><button class="action-button action-primary w-100" id="main-butten1" type="button" onclick="addProduct()"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Add member <i class="fa-solid fa-arrow-right action-arrow" aria-hidden="true"></i></button>
+            <button class="action-button action-update w-100 d-none" id="main-butten2" type="button" onclick="updateproudect()"><i class="fa-solid fa-pen" aria-hidden="true"></i> Save changes <i class="fa-solid fa-arrow-right action-arrow" aria-hidden="true"></i></button></div>
+            <div class="col-12"><button class="action-button action-secondary w-100" type="button" onclick="clearData()"><i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear form</button></div>
+          </div>
+          <p class="storage-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Your member records are stored locally in this browser.</p>
+        </section>
+
+        <!-- Members: rowData, search and number-arry remain hooked to original main.js -->
+        <section class="products-card" aria-labelledby="members-heading">
+          <div class="members-panel-heading"><div><p class="panel-overline">THE COMMUNITY</p><h2 id="members-heading">Members directory <span class="count-pill" id="number-arry">0</span></h2><p>Browse, find and manage your members.</p></div><span class="directory-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></span></div>
+          <!-- Search -->
+          <section class="search-section" aria-label="Search members"><div class="search-wrapper"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" class="form-control custom-search-input" id="search" placeholder="Search by member name or plan..." oninput="searchinput()" aria-label="Search members by name or plan"></div></section>
+          <!-- Members -->
+          <div class="row g-4" id="rowData"><!-- Members Here --></div>
+          <div class="directory-footnote"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Saved members appear here automatically.</div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer"><div class="container footer-inner"><span>© FORGE GYM · MEMBER MANAGEMENT</span><span>MADE WITH HTML · CSS · JAVASCRIPT</span></div></footer>
+  </div>
+
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Main JS: original, byte-for-byte unchanged -->
+  <script src="./main.js"></script>
+</body>
+</html>
